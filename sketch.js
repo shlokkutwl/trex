@@ -12,7 +12,7 @@ var score=0;
 
 var gameOver, restart;
 
-localStorage["HighestScore"] = 0;
+var highscore=0;
 
 function preload(){
   trex_running =   loadAnimation("trex1.png","trex3.png","trex4.png");
@@ -70,9 +70,9 @@ function setup() {
 
 function draw() {
   //trex.debug = true;
-  background("gray");
+  background(255);
   text("Score: "+ score, 500,50);
-  
+  text("HI:-"+ highscore,450,50);
   if (gameState===PLAY){
     score = score + Math.round(getFrameRate()/60);
     ground.velocityX = -(6 + 3*score/100);
@@ -80,7 +80,9 @@ function draw() {
     if(keyDown("space") && trex.y >= 159) {
       trex.velocityY = -12;
     }
-  
+    if(score>highscore){
+  highscore=score
+}
     trex.velocityY = trex.velocityY + 0.8
   
     if (ground.x < 0){
